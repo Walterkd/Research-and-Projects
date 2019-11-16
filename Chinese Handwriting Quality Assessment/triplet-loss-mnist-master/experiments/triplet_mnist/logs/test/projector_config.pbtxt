@@ -1,0 +1,4 @@
+embeddings {
+  tensor_name: "Variable_1:0"
+  metadata_path: "/Users/wangyoujia/Desktop/triplet-loss-mnist-master/experiments/triplet_mnist/logs/test/metadata.tsv"
+}

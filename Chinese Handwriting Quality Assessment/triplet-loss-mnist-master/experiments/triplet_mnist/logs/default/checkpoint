@@ -1,0 +1,2 @@
+model_checkpoint_path: "/Users/wangyoujia/Desktop/triplet-loss-mnist-master/experiments/triplet_mnist/logs/default/images.ckpt"
+all_model_checkpoint_paths: "/Users/wangyoujia/Desktop/triplet-loss-mnist-master/experiments/triplet_mnist/logs/default/images.ckpt"

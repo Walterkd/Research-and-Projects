@@ -1,0 +1,59 @@
+Using TensorFlow backend.
+[INFO] 解析配置...
+[INFO] 加载数据...
+[INFO] X_train.shape: (60000, 28, 28, 1), y_train.shape: (60000, 10)
+[INFO] X_test.shape: (10000, 28, 28, 1), y_test.shape: (10000, 10)
+[INFO] 构造网络...
+WARNING:tensorflow:From /Library/Frameworks/Python.framework/Versions/3.7/lib/python3.7/site-packages/tensorflow/python/framework/op_def_library.py:263: colocate_with (from tensorflow.python.framework.ops) is deprecated and will be removed in a future version.
+Instructions for updating:
+Colocations handled automatically by placer.
+WARNING:tensorflow:From /Library/Frameworks/Python.framework/Versions/3.7/lib/python3.7/site-packages/keras/backend/tensorflow_backend.py:3445: calling dropout (from tensorflow.python.ops.nn_ops) with keep_prob is deprecated and will be removed in a future version.
+Instructions for updating:
+Please use `rate` instead of `keep_prob`. Rate should be set to `rate = 1 - keep_prob`.
+[INFO] model - 锚shape: (?, 128)
+[INFO] model - 正shape: (?, 128)
+[INFO] model - 负shape: (?, 128)
+[INFO] model - triplet_loss shape: (?, 1)
+[INFO] 训练网络...
+[INFO] trainer - 类别数: 10
+WARNING:tensorflow:From /Library/Frameworks/Python.framework/Versions/3.7/lib/python3.7/site-packages/tensorflow/python/ops/math_ops.py:3066: to_int32 (from tensorflow.python.ops.math_ops) is deprecated and will be removed in a future version.
+Instructions for updating:
+Use tf.cast instead.
+Train on 54200 samples, validate on 8910 samples
+2019-02-26 16:01:22.740811: I tensorflow/core/platform/cpu_feature_guard.cc:141] Your CPU supports instructions that this TensorFlow binary was not compiled to use: AVX2 FMA
+Epoch 1/2
+54200/54200 [==============================] - 83s 2ms/step - loss: 0.6729 - val_loss: 0.0568
+Epoch 2/2
+54200/54200 [==============================] - 90s 2ms/step - loss: 0.0866 - val_loss: 0.0320
+[INFO] trainer - n_clz: 891.0
+[INFO] trainer - clz 0
+[INFO] trainer - distance - min: -14.200904, max: 1.5507779, avg: -6.748149
+[INFO] acc: 0.9955106621773289
+[INFO] trainer - clz 1
+[INFO] trainer - distance - min: -18.771727, max: 2.4392276, avg: -7.640636
+[INFO] acc: 0.9943883277216611
+[INFO] trainer - clz 2
+[INFO] trainer - distance - min: -17.670095, max: 3.7545495, avg: -7.1492953
+[INFO] acc: 0.9820426487093153
+[INFO] trainer - clz 3
+[INFO] trainer - distance - min: -19.078222, max: 0.7460587, avg: -6.802913
+[INFO] acc: 0.9966329966329966
+[INFO] trainer - clz 4
+[INFO] trainer - distance - min: -20.228971, max: 2.7441154, avg: -7.128678
+[INFO] acc: 0.9932659932659933
+[INFO] trainer - clz 5
+[INFO] trainer - distance - min: -18.516745, max: 4.169174, avg: -7.6075864
+[INFO] acc: 0.9865319865319865
+[INFO] trainer - clz 6
+[INFO] trainer - distance - min: -19.012428, max: 2.6623802, avg: -8.311019
+[INFO] acc: 0.9887766554433222
+[INFO] trainer - clz 7
+[INFO] trainer - distance - min: -17.005375, max: 3.0926154, avg: -6.6889753
+[INFO] acc: 0.9797979797979798
+[INFO] trainer - clz 8
+[INFO] trainer - distance - min: -17.068853, max: 4.725564, avg: -5.798263
+[INFO] acc: 0.978675645342312
+[INFO] trainer - clz 9
+[INFO] trainer - distance - min: -14.461937, max: 2.7611609, avg: -6.315704
+[INFO] acc: 0.9797979797979798
+[INFO] 训练完成...
