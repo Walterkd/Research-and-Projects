@@ -1,0 +1,43 @@
+clear all;
+clc;
+I=imread('lena2.bmp');
+I=rgb2gray(I);
+i=double(I);
+[m,n]=size(I);
+len=m*n;
+for p=1:256;
+    j=find(i==p-1);
+    u(p)=length(j);
+end
+stem(u);
+r=find(u>0);
+k=length(r);
+F(1,:)=r-1;
+v=u(r);
+A=v/sum(v);
+F(2,:)=A;
+B=F';
+B=sortrows(B,2);
+B=B';
+B=fliplr(B);
+A=B(2,:);
+[END,H,P,L]=huffenco(A);
+B=sym(B);
+B(3,:)=END;
+q=double(sum(L.*(sum(v)*B(2,:)))/len/8)
+W=sym(I);
+C=[];
+for w=1:k
+    for j=1:n
+        for i=1:m
+            if W(i,j)==B(1,w)
+                temp2=B(3,W);
+            end
+            O=length(C);
+            p=length(temp2);
+                for q=1:p
+                    C(O+i)=
+        end
+    end
+end
+W=reshape(W,1,[]);

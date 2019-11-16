@@ -1,0 +1,49 @@
+%% FAI_CW2_6522122
+%% Data Preparation.
+load('label.mat');
+
+cd('data');
+List = dir('*.png');
+len = length(List);
+train0 = [];
+test0 = [];
+
+train_label = zeros(10, len * 0.8);
+test_label = zeros(10, len * 0.2);
+
+for i = 1: len
+    name = getfield(List(i), 'name');
+    imageInfo = imread(name);
+    
+    if(i <= len * 0.8)
+        train0(:, i) = reshape(imageInfo, [], 1);
+        num = label(i);
+        train_label(num + 1, i) = 1;
+    else
+        test0(:, i - len * 0.8) = reshape(imageInfo, [], 1);
+        num = label(i);
+        test_label(num + 1, i - len * 0.8) = 1;
+    end
+end
+
+%% Principal Component Analysis (PCA)
+[COEFF, SCORE, latnet] = pca(train0');
+train_feature = SCORE(:, 1:100)';
+
+test_feature = test0 -repmat(mean(test0),[784,1]);
+test_feature = (test_feature'*COEFF(:,1:100))';
+
+%% Training and Experiments.
+net = patternnet([100, 100, 100]);
+net = train(net, train_feature, train_label);
+net.trainParam.goal = 1;
+net.trainParam.lr = 0.1;
+net.trainParam.max_fail = 1;
+
+cd('..');
+save('ann_model.mat', 'net');
+
+%% Testing.
+simOut = sim(net, test_feature);
+figure(1);
+plotconfusion(test_label, simOut);
