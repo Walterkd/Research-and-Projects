@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>显示图片</title>
+</head>
+<script src="./static/jquery-3.3.1.min.js"></script>
+<body>
+<div align="center" style="margin-top: 100px;">
+
+    <img src="" style="height: 300px;width: 300px;" id="A" onclick="get_image()">A
+    <img src="" style="height: 300px;width: 300px;" id="B" >B
+    <img src="" style="height: 300px;width: 300px;" id="C">C<br>
+    <button style="margin-top: 100px;" name="commit" onclick="Positive_B()">B更像</button> <button style="margin-left: 100px;" name="commit" onclick="Positive_C()">C更像</button>
+    <button style="margin-top: 100px;" name="commit"  style="margin-left: 100px;"  onclick="get_image_bc()">B和C都不像</button>
+    <br>
+    <button style="margin-top: 100px;" onclick="get_image_a()"> 获取A的图片</button>  <button style="margin-left: 100px;" onclick="get_image_bc()"> 获取BC的图片</button>
+</div>
+<script type="text/javascript">
+    // 获取A的照片
+    function get_image_a(){
+        $.ajax({
+                url: "http://127.0.0.1:5000/A",
+                type:"GET",
+                async:true,
+                success:function(msg){
+
+                    $('#A').attr("src",msg.img_url);
+                    $('#A').attr("zuobiao",msg.zuobiao);
+                    $('#A').attr("imageID",msg.image_id);
+                 }
+            });
+    };
+    
+    // 获取B和C的照片
+    function get_image_bc(){
+        $.ajax({
+                url: "http://127.0.0.1:5000/BC",
+                type:"GET",
+                async:true,
+                success:function(msg){
+                    $('#B').attr("src",msg.img_url);
+                    $('#B').attr("zuobiao",msg.zuobiao);
+                    $('#B').attr("imageID",msg.image_id);
+                 }
+            });
+
+            $.ajax({
+                url: "http://127.0.0.1:5000/BC",
+                type:"GET",
+                async:true,
+                success:function(msg){
+                    $('#C').attr("src",msg.img_url);
+                    $('#C').attr("zuobiao",msg.zuobiao);
+                    $('#C').attr("imageID",msg.image_id);
+                 }
+            });
+    };
+    
+    function Positive_B() {
+        //w,h,x,y
+        zuobiaoA = $("#A").attr("zuobiao");
+        imageIDA = $("#A").attr("imageID");
+
+        zuobiaoB = $("#B").attr("zuobiao");
+        imageIDB = $("#B").attr("imageID");
+
+        zuobiaoC = $("#C").attr("zuobiao");
+        imageIDC = $("#C").attr("imageID");
+
+        $.ajax({
+                url: "http://127.0.0.1:5000/commit",
+                type:"POST",
+                data:{"zuobiaoA":zuobiaoA,"imageIDA":imageIDA,"zuobiaoB":zuobiaoB,"imageIDB":imageIDB,"zuobiaoC":zuobiaoC,"imageIDC":imageIDC,"Positive":"B"},
+                async:true,
+                success:function(msg){
+                    alert(msg.msg)
+                 }
+            });
+
+    }
+    
+    function Positive_C() {
+        zuobiaoA = $("#A").attr("zuobiao");
+        imageIDA = $("#A").attr("imageID");
+
+        zuobiaoB = $("#B").attr("zuobiao");
+        imageIDB = $("#B").attr("imageID");
+
+        zuobiaoC = $("#C").attr("zuobiao");
+        imageIDC = $("#C").attr("imageID");
+
+        $.ajax({
+                url: "http://127.0.0.1:5000/commit",
+                type:"POST",
+                data:{"zuobiaoA":zuobiaoA,"imageIDA":imageIDA,"zuobiaoB":zuobiaoB,"imageIDB":imageIDB,"zuobiaoC":zuobiaoC,"imageIDC":imageIDC,"Positive":"C"},
+                async:true,
+                success:function(msg){
+                    alert(msg.msg)
+                 }
+            });
+
+    }
+    
+</script>
+</body>
+</html>
