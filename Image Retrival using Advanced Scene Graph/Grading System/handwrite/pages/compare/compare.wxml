@@ -1,0 +1,12 @@
+<!--compare.wxml-->
+
+<view class="container">
+  <view class="userinfo">
+    <block>
+      <image src="{{logs}}" style="width:100px;height:100px;"></image>
+      <image  src="{{logs1}}" style="width:100px;height:100px;"></image>
+       <button type="defaule" bindtap="left"style="width:100px;height:50px;">left</button>
+      <button type="defaule" bindtap="right"style="width:100px;height:50px;">right</button>
+    </block>
+  </view>
+</view>
